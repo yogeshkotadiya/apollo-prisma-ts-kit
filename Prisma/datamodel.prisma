@@ -1,0 +1,17 @@
+enum Permission {
+  ADMIN
+  USER
+  PERMISSIONUPDATE
+}
+
+type User {
+  id: ID! @id
+  name: String!
+  email: String! @unique
+  createdAt: DateTime! @createdAt
+  updatedAt: DateTime! @updatedAt
+  password: String!
+  resetToken: String
+  resetTokenExpiry: Float
+  roles: [Permission]! @scalarList(strategy: RELATION) @default(value: USER)
+}
